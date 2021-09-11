@@ -1,0 +1,44 @@
+{
+  "id": "2805483",
+  "name": "art-admin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "一个艺术会展网站的后台管理系统",
+  "glyphs": [
+    {
+      "icon_id": "13084286",
+      "name": "叶子",
+      "font_class": "yezi",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "4719754",
+      "name": "设备管理",
+      "font_class": "shebeiguanli",
+      "unicode": "e6b0",
+      "unicode_decimal": 59056
+    },
+    {
+      "icon_id": "12149798",
+      "name": "项目管理",
+      "font_class": "xiangmuguanli",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "18335000",
+      "name": "举办展览-会议申请",
+      "font_class": "jubanzhanlan-huiyishenqing",
+      "unicode": "e69d",
+      "unicode_decimal": 59037
+    },
+    {
+      "icon_id": "24111786",
+      "name": "审核",
+      "font_class": "shenhe",
+      "unicode": "fba8",
+      "unicode_decimal": 64424
+    }
+  ]
+}
