@@ -17,8 +17,6 @@
 </template>
 <script>
 import * as echarts from 'echarts'
-
-
 export default {
   name: "CityClassified",
   data() {
@@ -32,46 +30,46 @@ export default {
            { name: '江苏', num: 5, percentage: '20%' },
        ],
        option: {
-            color: ['#61a0a8','#91cc75', '#d48265', '#91c7ae','#749f83', '#ca8622'],
+          color: ['#61a0a8','#91cc75', '#d48265', '#91c7ae','#749f83', '#ca8622'],
   		    tooltip:{},
   	    	legend: {
   	    		data:['数量'],
-                  textStyle:{
-                            fontSize: 14,//字体大小
-                            color: '#ffffff'//字体颜色
-                        },
-  	    	},
+              textStyle:{
+                   fontSize: 14,//字体大小
+                   color: '#ffffff'//字体颜色
+               },
+          },
   	    	xAxis: {
   	    		data: ['成都','上海','北京','深圳','福建','江苏'],
-                   axisLabel: {
-                            show: true,
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        }
+              axisLabel: {
+                  show: true,
+                  textStyle: {
+                      color: '#fff'
+                  }
+               }
   	    	},
   	    	yAxis: {
-                  axisLabel: {
-                            show: true,
-                            textStyle: {
-                                color: '#fff'
-                            }
-                        }
-              },
+              axisLabel: {
+                    show: true,
+                    textStyle: {
+                        color: '#fff'
+                    }
+                 }
+             },
   	    	series: [{
   	    		name: '数量',
   	    		type: 'bar',
   	    		data: [12,5,3,0,0,5],
-                   itemStyle: {
-            normal: {
-　　　　　　　　//这里是重点
-                color: function(params) {
-                	//注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
-                    var colorList = ['#61a0a8','#91cc75', '#d48265', '#91c7ae','#749f83', '#ca8622'];
-                    return colorList[params.dataIndex]
-                }
-            }
-        }
+            itemStyle: {
+                 normal: {
+　　　　　     　　　//这里是重点
+                     color: function(params) {
+                     	//注意，如果颜色太少的话，后面颜色不会自动循环，最好多定义几个颜色
+                         var colorList = ['#61a0a8','#91cc75', '#d48265', '#91c7ae','#749f83', '#ca8622'];
+                         return colorList[params.dataIndex]
+                     }
+                 }
+              }
   	    	}]       
   	    }
     };

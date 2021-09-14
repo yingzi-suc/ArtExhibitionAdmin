@@ -59,15 +59,21 @@ export const constantRoutes = [
     path: '/userSettings',
     component: Layout,
     redirect: '/userSettings/table',
-    name: 'UserSettings',
-    meta: { title: '用户登录', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'userInfo',
         name: 'UserInfo',
         component: () => import('@/views/userSettings/UserInfo'),
-        meta: { title: '用户管理', icon: 'table' }
-      },
+        meta: { title: '用户管理', icon: 'el-icon-s-help' }
+      }
+    ]
+  },
+
+  {
+    path: '/userSettingss',
+    component: Layout,
+    redirect: '/userSettingss/table',
+    children: [
       {
         path: 'loginLog',
         name: 'LoginLog',
@@ -81,90 +87,40 @@ export const constantRoutes = [
     path: '/exhibitionManagement',
     component: Layout,
     redirect: '/exhibitionManagement/table',
-    name: 'ExhibitionManagement',
-    meta: { title: '展会管理', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
+        path: 'ExhibitionManagement',
+        name: 'ExhibitionManagement',
         component: () => import('@/views/exhibitionManagement/ExhibitionManagement'),
         meta: { title: '展会管理', icon: 'form' }
-      },
-      // {
-      //   path: 'index',
-      //   name: 'Form',
-      //   component: () => import('@/views/exhibitionManagement/index'),
-      //   meta: { title: '展会管理', icon: 'form' }
-      // },
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
       }
     ]
   },
 
   {
-    path: 'external-link',
+    path: '/exchangecenter',
     component: Layout,
+    redirect: '/exchangecenter/table',
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'ExchengeCenter',
+        name: 'ExchengeCenter',
+        component: () => import('@/views/exchangecenter/ExchangeCenter'),
+        meta: { title: '交流中心', icon: 'nested' }
+      }
+    ]
+  },
+
+  {
+    path: '/setup',
+    component: Layout,
+    redirect: '/setup/table',
+    children: [
+      {
+        path: 'SetUp',
+        name: 'SetUp',
+        component: () => import('@/views/setup/SetUp'),
+        meta: { title: '设置', icon: 'link' }
       }
     ]
   },

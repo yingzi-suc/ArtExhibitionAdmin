@@ -114,7 +114,7 @@ export default {
            { label: '展会介绍', prop: 'content' }
         ],
         operation:[ //表格操作配置
-          {label:'审核',type: 'text',bgColor:'#1f9fff',color: '#fff',action(scope){
+          {label:'审核',type: 'text',bgColor:'#ffb800',color: '#fff',action(scope){
             self.clickExamine (scope.row)
           }},
           {label:'编辑',type: 'text',bgColor:'#1f9fff',color: '#fff',action(scope){
@@ -249,7 +249,7 @@ export default {
     },
     varCurrentChange(val) {
       this.currentVarPage = val
-      this.tableConfig.tableData = this.tableData.slice(val * 6 - 6,val * 6)
+      this. cardTableConfig.tableData = this.tableData.slice(val * 6 - 6,val * 6)
     }
 
   }

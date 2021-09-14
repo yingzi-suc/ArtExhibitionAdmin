@@ -10,7 +10,6 @@
       <div class="left-data-container">
         <exhibition-overview class="device-info"/>
          <art-head class="pest-photos"/>
-       
       </div>
       <!-- 中间 -->
       <div class="center-map-container">

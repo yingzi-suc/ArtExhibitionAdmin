@@ -144,7 +144,7 @@ export default {
     },
     varCurrentChange(val) {
       this.currentVarPage = val
-      this.tableConfig.tableData = this.tableData.slice(val * 6 - 6,val * 6)
+      this.cardTableConfig.tableData = this.tableData.slice(val * 6 - 6,val * 6)
     }
 
   }

@@ -57,10 +57,10 @@ export default {
 </script>
 <style>
 .el-input__inner {
-    background-color: #434549;
+    /* background-color: #f0f0f0; */
     height: 30px;
-    border: none;
-    color: #ffffff;
+    /* border:1px solid #b7b7b7; */
+    /* color: #89898a; */
 }
 .el-select-dropdown {
     border:none;
