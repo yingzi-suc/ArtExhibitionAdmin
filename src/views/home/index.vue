@@ -8,8 +8,8 @@
     <div class="main-box-container">
       <!-- 左边 -->
       <div class="left-data-container">
-        <exhibition-overview class="device-info"/>
-         <art-head class="pest-photos"/>
+        <exhibition-overview class="device-info" :overview="overview"/>
+         <art-head class="pest-photos" :artheadline="artheadline"/>
       </div>
       <!-- 中间 -->
       <div class="center-map-container">
@@ -17,8 +17,8 @@
       </div>
       <!-- 右边 -->
       <div class="right-data-container">
-         <city-classified class="pest-change-trend"/>
-        <discussion-center class="pest-proportion"/>
+         <city-classified class="pest-change-trend" :alarmTop="alarmTop"/>
+        <discussion-center class="pest-proportion" :discuss="discuss"/>
       </div>
     </div>
   </div>
@@ -33,6 +33,8 @@ import ArtsImages from './components/ArtsImages.vue'
 import ArtHead from './components/ArtHead.vue'
 import DiscussionCenter from './components/DiscussionCenter.vue'
 
+import {exOverview,artHeadlines,cityClassification,communicationCenter} from '../../api/user'
+
 export default {
   name: 'Dashboard',
   components: {
@@ -42,11 +44,58 @@ export default {
     ArtHead,
     DiscussionCenter
   },
+  data(){
+    return {
+      overview:{},
+      artheadline:[],
+      alarmTop:[],
+      discuss:[]
+    }
+  },
   computed: {
     ...mapGetters([
       'name'
     ])
-  }
+  },
+  mounted(){
+    this.getExOverview(),
+    this.getArtHeadlines(),
+    this.getcityClassification(),
+    this.getCommunicationcenter()
+  },
+  methods:{
+    getExOverview(){
+      exOverview().then(res=>{
+        if(res.code === 0) {
+         this.overview = res.data
+        }
+      })
+    },
+    getArtHeadlines(){
+      artHeadlines().then(res=>{
+        if(res.code === 0) {
+          this.artheadline = res.data
+        }
+      })
+    },
+    getcityClassification(){
+      cityClassification().then(res=>{
+        if(res.code === 0) {
+          this.alarmTop = res.data
+        }
+      })
+    },
+    getCommunicationcenter(){
+      communicationCenter().then(res=>{
+        if(res.code === 0) {
+          res.data.forEach(item => {
+             item.time = this.$dayjs(item.time).format("YYYY-MM-DD")
+          })
+          this.discuss = res.data
+        }
+      })
+    }
+  },
 }
 </script>
 

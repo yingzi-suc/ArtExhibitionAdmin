@@ -3,9 +3,9 @@
         <div class="title">
             <div class="title-content">艺术头条</div>
         </div>
-        <vue-seamless-scroll  class="seamless-warp"  ref="seamlessScroll"  :class-option="option" :data="artHeadlines">         
+        <vue-seamless-scroll  class="seamless-warp"  ref="seamlessScroll"  :class-option="option" :data="artheadline">         
             <ul>
-                <li class="headlines-item" v-for="(item,index) in artHeadlines" :key="index">
+                <li class="headlines-item" v-for="(item,index) in artheadline" :key="index">
                     <div class="headlines-title">{{item.headlinesTitle}}</div>
                     <div class="headlines-text">{{item.headlinesText}}
                     </div>
@@ -18,6 +18,7 @@
 import vueSeamlessScroll from 'vue-seamless-scroll'
 export default {
   name: "ArtHead",
+  props:["artheadline"],
   components: {
       vueSeamlessScroll
   },

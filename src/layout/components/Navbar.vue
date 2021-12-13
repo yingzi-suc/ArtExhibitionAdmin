@@ -35,6 +35,14 @@ export default {
     Breadcrumb,
     Hamburger
   },
+  data(){
+    return {
+      logoutdata:{
+        username:sessionStorage.getItem('username'),
+        logoutDate:this.$fn.getDate(),
+      }
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
@@ -46,7 +54,7 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
+      await this.$store.dispatch('user/logout',this.logoutdata)
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }

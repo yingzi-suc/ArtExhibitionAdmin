@@ -7,22 +7,22 @@
             <div class="content-item">
                <i class="iconfont icon-jubanzhanlan-huiyishenqing"></i>
                <p>展览会总数：</p>
-               <p class="p1">9.00</p>
+               <p class="p1">{{this.overview.total}}</p>
             </div>
              <div class="content-item">
                <i class="iconfont icon-shenhe icon1"></i>
                <p>审核通过数：</p>
-               <p class="p2">7.00</p>
+               <p class="p2">{{this.overview.approvalsnum}}</p>
             </div>
              <div class="content-item">
                <i class="iconfont icon-shenhe icon2"></i>
                <p>没审核数：</p>
-               <p class="p3">2.00</p>
+               <p class="p3">{{this.overview.unapprovalsnum}}</p>
             </div>
              <div class="content-item">
                <i class="iconfont icon-shebeiguanli"></i>
                <p>项目城市数：</p>
-               <p class="p4">3.00</p>
+               <p class="p4">{{this.overview.citynum}}</p>
             </div>
         </div>
       
@@ -31,7 +31,7 @@
 <script>
 export default {
   name: "ExhibitionOverview",
-  // props: ["deviceInfo"],
+  props: ["overview"],
   data() {
     return {
      

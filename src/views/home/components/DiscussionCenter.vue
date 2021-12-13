@@ -19,7 +19,7 @@
 import vueSeamlessScroll from 'vue-seamless-scroll'
 export default {
   name: "DiscussionCenter",
-  // props: ["deviceInfo"],
+  props: ["discuss"],
    components: {
       vueSeamlessScroll
   },
@@ -33,16 +33,16 @@ export default {
             singleHeight: 0, // 单步运动停止的高度(默认值0是无缝不停止的滚动) direction => 0/1
             waitTime: 2000, // 单步运动停止的时间(默认值1000ms)
           },
-     discuss:[
-         {username: '小小木',content:'今天去的这个艺术馆超级好看的，我非常喜欢，很有氛围感',time:'2021-09-08'},
-          {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
-          {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
-          {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
-          {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
-          {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
-          {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
-          {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
-     ]
+    //  discuss:[
+    //      {username: '小小木',content:'今天去的这个艺术馆超级好看的，我非常喜欢，很有氛围感',time:'2021-09-08'},
+    //       {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
+    //       {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
+    //       {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
+    //       {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
+    //       {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
+    //       {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
+    //       {username: '小小木',content:'今天去的这个艺术馆超级好看的',time:'2021-09-08'},
+    //  ]
     };
   }
 };
@@ -68,12 +68,15 @@ export default {
   }
   .seamless-warp {
       height: 214px;
+      width: 100%;
       overflow: hidden;
        ul {
           margin: 0;
           padding: 0;
+          width: 100%;
           .headlines-item {
              display: flex;
+             justify-content: space-between;
              margin-bottom: 10px;
              line-height: 25px;
             .iig {
@@ -82,6 +85,7 @@ export default {
             }
             .headlines-username {
                 margin-right: 12px;
+                white-space: nowrap;
                
             }
             .headlines-content {
@@ -90,6 +94,10 @@ export default {
                  white-space: nowrap;
             	overflow: hidden;
             	text-overflow: ellipsis;
+            }
+            .headlines-time {
+              width:76px;
+              padding-right: 4px;
             }
           }
       }

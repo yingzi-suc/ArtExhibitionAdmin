@@ -75,7 +75,8 @@ export default {
     return {
       loginForm: {
         username: 'admin',
-        password: '111111'
+        password: '111111',
+        loginDate: this.$fn.getDate(),
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
