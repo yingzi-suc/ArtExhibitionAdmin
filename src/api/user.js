@@ -57,3 +57,26 @@ export function communicationCenter(){
     method:'get'
   })
 }
+
+//获取展会信息
+export function homeHighlight() {
+  return request({
+      url:'/api/home/highlight',
+      method: 'get'
+  })
+}
+//根据城市获取展会信息
+export function findCityArts(query) {
+  return request({
+      url:'/api/findArt/cityArts',
+      method: 'get',
+      params: query
+  })
+}
+// 获取登录日志数据
+export function getLoginLog() {
+  return request({
+      url:'/api/admin/loginLog',
+      method: 'get'
+  })
+}

@@ -13,7 +13,7 @@
       </div>
       <!-- 中间 -->
       <div class="center-map-container">
-        <arts-images class="equipment-distribution"/>       
+        <arts-images class="equipment-distribution" @cityClick="cityClick" :artimages="artimages"/> 
       </div>
       <!-- 右边 -->
       <div class="right-data-container">
@@ -33,7 +33,7 @@ import ArtsImages from './components/ArtsImages.vue'
 import ArtHead from './components/ArtHead.vue'
 import DiscussionCenter from './components/DiscussionCenter.vue'
 
-import {exOverview,artHeadlines,cityClassification,communicationCenter} from '../../api/user'
+import {exOverview,artHeadlines,cityClassification,communicationCenter,homeHighlight,findCityArts} from '../../api/user'
 
 export default {
   name: 'Dashboard',
@@ -49,7 +49,10 @@ export default {
       overview:{},
       artheadline:[],
       alarmTop:[],
-      discuss:[]
+      discuss:[],
+      artimages:[],
+      imgLists:[],
+      zd:''
     }
   },
   computed: {
@@ -57,11 +60,18 @@ export default {
       'name'
     ])
   },
+  created(){
+    // setTimeout(()=>{
+    //    this.artimages =  this.$fn.getRandomArrayElements(this.imgLists, 6)
+    //    console.log('111')
+    // },500)
+  },
   mounted(){
     this.getExOverview(),
     this.getArtHeadlines(),
     this.getcityClassification(),
-    this.getCommunicationcenter()
+    this.getCommunicationcenter(),
+    this.getArtImages()
   },
   methods:{
     getExOverview(){
@@ -92,6 +102,40 @@ export default {
              item.time = this.$dayjs(item.time).format("YYYY-MM-DD")
           })
           this.discuss = res.data
+        }
+      })
+    },
+    cityClick(index){
+      index = parseInt(index)
+      if(index && index !==0){
+        findCityArts({city:index}).then(res=>{
+          if(res.code == 0){
+              res.data.forEach(item =>{
+                item.img.forEach(i=>{
+                  this.imgLists.push(i)
+                })
+              })
+              if(this.imgLists.length <7){
+                 this.artimages = this.imgLists
+              } else {
+                 this.artimages = this.$fn.getRandomArrayElements(Array.from(new Set(this.imgLists)), 6)
+              }
+          }
+        })
+      } else if(index == 0){
+        this.getArtImages()
+      }
+    },
+    // 获取全部图片
+    getArtImages(){
+      homeHighlight().then(res=>{
+        if(res.code == 0){
+          res.data.forEach(item=>{
+            item.img.forEach(item=>{
+              this.imgLists.push(item)
+            })
+          })
+         this.artimages =  this.$fn.getRandomArrayElements(Array.from(new Set(this.imgLists)), 6)
         }
       })
     }

@@ -11,6 +11,17 @@ const fn = {
         hour = hour < 10 ? '0' +hour:hour;
         minutes = minutes < 10 ? '0' +minutes:minutes;
         return year + '-' + month + '-' + day +' '+ hour +':'+ minutes
+    },
+    // 将数组随机取几个数
+    getRandomArrayElements(arr, count) {
+        var shuffled = arr.slice(0), i = arr.length, min = i - count, temp, index;
+        while (i-- > min) {
+            index = Math.floor((i + 1) * Math.random());
+            temp = shuffled[index];
+            shuffled[index] = shuffled[i];
+            shuffled[i] = temp;
+        }
+        return shuffled.slice(min);
     }
 }
 export default fn

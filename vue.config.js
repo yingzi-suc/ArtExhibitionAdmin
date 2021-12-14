@@ -22,21 +22,29 @@ module.exports = {
   assetsDir: 'static',
   lintOnSave: false,
   productionSourceMap: false,
+  // devServer: {
+  //   port: port,
+  //   open: true,
+  //   proxy:{
+  //     '/api':{
+  //       target:`http://localhost:3000`,
+  //       changeOrigin:true //是否跨域
+  //     }
+  //   },
+  //   overlay: {
+  //     warnings: false,
+  //     errors: true
+  //   },
+  //   // before: require('./mock/mock-server.js')
+  // },
   devServer: {
-    port: port,
-    open: true,
-    proxy:{
-      '/api':{
-        target:`http://localhost:3000`,
-        changeOrigin:true //是否跨域
-      }
-    },
-    overlay: {
-      warnings: false,
-      errors: true
-    },
-    // before: require('./mock/mock-server.js')
-  },
+    proxy: 'http://localhost:3000',
+    // headers: {
+    //     'Access-Control-Allow-Origin': '*',
+    // },
+    // hotOnly:false,
+    // disableHostCheck: true
+},
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.

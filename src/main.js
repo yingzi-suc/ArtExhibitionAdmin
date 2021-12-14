@@ -13,6 +13,15 @@ import store from './store'
 import router from './router'
 import fn from './assets/js/function'
 import dayjs from 'dayjs'
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload)
+// 配置项
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '',
+  loading: './assets/img/lazyload.png',
+  attempt: 1
+})
 
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts

@@ -4,7 +4,7 @@
             <div class="title-content">艺术作品集</div>
         </div>
         <div class="content">
-            <el-select v-model="value" placeholder="请选择城市">
+            <el-select v-model="value" placeholder="请选择城市" @change="cityClick">
                 <el-option
                   v-for="item in cityOptions"
                   :key="item.value"
@@ -13,12 +13,12 @@
                 </el-option>
              </el-select>
              <div class="imgcontent">
-                 <div class="item"><img src="../static/1.png" alt=""></div>
-                 <div class="item"><img src="../static/2.png" alt=""></div>
+                 <div class="item" v-for="(i,index) in artimages" :key="index"><img :src="artimages[index]" alt=""></div>
+                 <!-- <div class="item"><img src="../static/2.png" alt=""></div>
                  <div class="item"><img src="../static/3.png" alt=""></div>
                  <div class="item"><img src="../static/4.jpg" alt=""></div>
                  <div class="item"><img src="../static/5.jpg" alt=""></div>
-                 <div class="item"><img src="../static/6.png" alt=""></div>
+                 <div class="item"><img src="../static/6.png" alt=""></div> -->
              </div>
         </div>
     </div>
@@ -26,10 +26,14 @@
 <script>
 export default {
   name: "ArtsImages",
-  // props: ["deviceInfo"],
+  props: ["artimages"],
   data() {
     return {
           cityOptions: [
+              {
+                  value:'0',
+                  label:'全部'
+              },
                     {
                         value: '1',
                         label: '成都'
@@ -52,6 +56,12 @@ export default {
                 ],
         value: ''
     };
+  },
+  methods:{
+
+      cityClick(index){
+          this.$emit("cityClick",index)
+      }
   }
 };
 </script>

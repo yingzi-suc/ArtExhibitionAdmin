@@ -15,13 +15,14 @@
           </div>
           <CardTable :tableConfig="tableConfig" class="log-table" />
           <el-pagination @current-change="varCurrentChange" :current-page.sync="currentVarPage"
-           :page-size="6" layout="total, prev, pager, next" :total="tableData.length"></el-pagination>
+           :page-size="9" layout="total, prev, pager, next" :total="tableData.length"></el-pagination>
        </div>
   </div>
 </template>
 
 <script>
 import CardTable from '@/components/cardTable'
+import {getLoginLog} from '../../api/user'
 export default {
   components: {
     CardTable
@@ -31,41 +32,59 @@ export default {
        filterText: '', //搜索绑定数据
        currentVarPage:1,
        tableData: [//用来接收表格数据，通过数组长度知道总的数据
-             {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'}
+            //  {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'}
        ],
        tableConfig: {//表格数据
         size: 'normal',
         listLoading: false,
         tableData: [
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
-            {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'}
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'},
+            // {user:'yzy',_ip: '344555',options: 'Login',info: '登录',time: '2021.09.12'}
         ],
         tableColumn: [//表格配置参数
           { label: '用户名称', prop: 'user' },
           { label: '用户ip', prop: '_ip' },
-          { label: '操作类型', prop: 'options' },
+          { label: '用户类型', prop: 'options' },
           { label: '操作详情', prop: 'info' },
-          { label: '操作时间', prop: 'time', icon: true }
+          { label: '操作时间', prop: 'time', icon: true },
         ]
       },
     }
   },
+  mounted(){
+    this.init()
+  },
   methods: {
+    init(){
+      getLoginLog().then(res=>{
+        if(res.code==0){
+        const result = res.data.map(item=>({
+          user:item.username,
+          _ip:item._id,
+          options:item.role,
+          info:item.detail,
+          time:item.loginDate?item.loginDate:item.logoutDate,
+        }))
+        this.tableData = result
+        this.tableConfig.tableData =  this.tableData.slice(0,9)
+        }
+      })
+    },
     // 查询
     clickFilterData() {
        
@@ -76,12 +95,16 @@ export default {
     },
     varCurrentChange(val) {
       this.currentVarPage = val
-      this.tableConfig.tableData = this.tableData.slice(val * 6 - 6,val * 6)
+      this.tableConfig.tableData = this.tableData.slice(val * 9 - 9,val * 9)
     }
-
   }
 }
 </script>
+<style>
+.el-table--scrollable-y .el-table__body-wrapper{
+  height: 600px !important;
+}
+</style>
 <style scoped lang="scss">
  .rtm-right-box {
   height: 96%;
